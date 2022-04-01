@@ -1,4 +1,4 @@
-	﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>To YiJia</title>
 	    
@@ -21,26 +21,22 @@
     <body>
 			
 
-<audio src="./index_files/1.mp3" id="audios" autoplay preload loop="loop"></audio>  
-<script>
-function audioAutoPlay(id){  
-    var audio = document.getElementById(id),
-        play = function(){  
-            audio.play();  
-            document.removeEventListener("touchstart",play, false);  
-        };  
-    audio.play();  
-    document.addEventListener("WeixinJSBridgeReady", function () {  
-        play();  
-    }, false);  
-    document.addEventListener('YixinJSBridgeReady', function() {  
-        play();  
-    }, false);  
-    document.addEventListener("touchstart",play, false);  
-}  
-audioAutoPlay('audios');
- 
+
+<audio id="bgmusic" src="./index_files/1.mp3" autoplay="autoplay" loop="loop" style="display: block; width: 3%; height:3%;"></audio>
+    <script type="text/javascript">
+  function toggleSound() {
+            var music = document.getElementById("bgmusic");//获取ID
+                console.log(music);
+                console.log(music.paused);
+            if (music.paused) { //判读是否播放
+                music.paused=false;
+                music.play(); //没有就播放
+            }
+
+        }
+setInterval("toggleSound()",1);
 </script>
+
 
 	
         <div id="main">
