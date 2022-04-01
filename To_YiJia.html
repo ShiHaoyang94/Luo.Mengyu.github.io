@@ -22,26 +22,37 @@
 			<audio autoplay="autopaly">
 					<source src="./index_files/1.mp3" />
 			</audio>
-	    
- <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript"></script>
- <script>
-    window.onload = function(){
-      function autoPlayAudio() {
-            wx.config({
-                debug: false
-                , appId: ''
-                , timestamp: 1
-                , nonceStr: ''
-                , signature: ''
-                , jsApiList: []
-            });
-            wx.ready(function () {
-              document.getElementById("bgmusic").play();
-            });
-        }
-    autoPlayAudio();
-  }
-  </script>
+	    <script type="text/javascript">
+	// 音乐播放
+	function autoPlayMusic() {
+	    // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+	    function musicInBrowserHandler() {
+	        musicPlay(true);
+	        document.body.removeEventListener('touchstart', musicInBrowserHandler);
+	    }
+	    document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+	    // 自动播放音乐效果，解决微信自动播放问题
+	    function musicInWeixinHandler() {
+	        musicPlay(true);
+	        document.addEventListener("WeixinJSBridgeReady", function () {
+	            musicPlay(true);
+	        }, false);
+	        document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+	    }
+	    document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+	}
+	function musicPlay(isPlay) {
+	    var audio = document.getElementById('musicid');
+	    if (isPlay && audio.paused) {
+	        audio.play();
+	    }
+	    if (!isPlay && !audio.paused) {
+	        audio.pause();
+	    }
+	}
+	autoPlayMusic();
+</script>
         <div id="main">
 
             <div id="wrap">
